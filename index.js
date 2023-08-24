@@ -192,11 +192,13 @@ console.log(SonDegerlendirmeyiAl(degerlendirmeler))
 */
 
 function PuanaGoreDegerlendirmeAl(dizi,deger) {
-    for(let i= 0; i<dizi.length;i++){
-		if(dizi[i].puan >= deger && dizi[i].puan < deger+1){
-			return dizi[i]
+	let yeniDizi = [];
+    for(let paket of dizi){
+		if(paket.puan >= deger && paket.puan < deger+1){
+			yeniDizi.push(paket)
 		}
 	}
+	return yeniDizi;
 }
 console.log(PuanaGoreDegerlendirmeAl(degerlendirmeler,4))
 
@@ -208,9 +210,18 @@ console.log(PuanaGoreDegerlendirmeAl(degerlendirmeler,4))
 	
 */
 
-function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function UzunDegerlendirmeleriAl(dizi) {
+    let yeniDizi = [];
+	for(let paket of dizi){
+		let geribildirim = paket.geribildirim;
+		let kelimeler = geribildirim.split(" ");
+		if(kelimeler.length > 15){
+			yeniDizi.push(paket);
+		}
+	}
+	return yeniDizi;
 }
+console.log(UzunDegerlendirmeleriAl(degerlendirmeler))
 
 
 /*  BONUS 3:  
@@ -231,10 +242,26 @@ function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
 */
 
 
-function arabaYapici(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function arabaYapici(ilkSayacDegeri) {
+    const car = {
+		marka: "BMW",
+		model: "X5",
+		kilometreSayaci: ilkSayacDegeri,
+		surus: function(mesafe){
+			this.kilometreSayaci += mesafe;
+			return this.kilometreSayaci;
+		}
+	}
+	return car;
     
 }
+const araba1 = new arabaYapici(10);
+const araba2 = new arabaYapici(0);
+
+console.log(araba1.surus(100));
+console.log(araba1.surus(100));
+console.log(araba1.surus(100));
+console.log(araba2.surus(100));
 
 
 /*  Buradan aşağıdaki kodları değiştirmeyin lütfen */
